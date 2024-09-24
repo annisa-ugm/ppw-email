@@ -29,3 +29,7 @@ return new class extends Migration
         //
     }
 };
+
+//Migration adalah fitur untuk kelola database secara terkendali oleh
+//versi shg kita bisa buat, ubah/hapus tabel & kolom scara terprogram
+//otomatis
