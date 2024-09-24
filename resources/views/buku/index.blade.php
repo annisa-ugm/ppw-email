@@ -110,6 +110,10 @@
                 @endforeach
             </tbody>
         </table>
+        <br>
+        <strong>Jumlah buku: {{ $jumlah_buku }}</strong>
+        <br>
+        <strong>Total harga buku: {{ 'Rp'.number_format($total_harga, 2, ',', '.')}}</strong>
     </div>
 </body>
 </html>

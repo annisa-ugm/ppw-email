@@ -10,9 +10,11 @@ class BukuController extends Controller
 {
     public function index (){
         $data_buku = Buku::all()->sortBy('index');
+        $jumlah_buku = $data_buku->count();
+        $total_harga = $data_buku->sum('harga');
 //Buku::all adl kumpulan data dari tabel bukus yg disortir dgn sortBy('index')
 //dan disimpan dalam variabel $data_buku
-        return view('buku.index', compact('data_buku'));
+        return view('buku.index', compact('data_buku', 'jumlah_buku', 'total_harga'));
         //fungsi compact() buat kirim data dri controller ke view
         //compact ini bikin array asosiatif yg isinya var. data_buku dan isinya
         //nilai dari var $data_buku di controller
