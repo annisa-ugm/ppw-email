@@ -14,6 +14,15 @@
 <body class="bg-light">
     <div class="container mt-5">
 
+        @if(count($data_buku))
+            <div class="alert alert-success">Ditemukan <strong>{{ count($data_buku) }}
+            </strong> data dengan kata: <strong>{{ $cari }}</strong></div>
+        @else
+
+            <div class="alert alert-warning"><h4>Data {{ $cari }} tidak ditemukan</h4>
+            <a href="/buku" class="btn btn-warning">Kembali</a></div>
+        @endif
+
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-center">Daftar Buku</h2>
             <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
@@ -29,12 +38,14 @@
         <div class="alert alert-success mt-3">{{ Session::get('update') }}</div>
         @endif
 
-        {{-- <form action="{{ route('buku.search') }}" method="get">
-            @csrf
-            <input type="text" name="kata" class="form-control" placeholder="Cari..."
-            style="width: 30%; display:inline; margin-top:10px; margin-botton:10px;
-            float:right;">
-        </form> --}}
+        <div>
+            <form action="{{ route('buku.search') }}" method="get">
+                @csrf
+                <input type="text" name="kata" class="form-control" placeholder="Cari..."
+                style="width: 30%; display:inline; margin-top:10px; margin-botton:10px;
+                float:right;">
+            </form>
+        </div>
 
         <table id="datatable" class="table table-bordered table-hover mt-4">
             <thead class="table-primary text-center">
@@ -72,23 +83,23 @@
             </tbody>
         </table>
 
-        {{-- <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end">
             <div>{{ $data_buku->links() }}</div>
-        </div> --}}
-        {{-- <div><strong>Jumlah Buku: {{ $jumlah_buku }}</strong></div> --}}
+        </div>
+        <div><strong>Jumlah Buku: {{ $jumlah_buku }}</strong></div>
 
 
     </div>
     @endsection
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#datatable').DataTable();
         });
-    </script>
+    </script> --}}
 </body>
 </html>
 

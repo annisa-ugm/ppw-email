@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,6 +9,7 @@ class Buku extends Model
     use HasFactory;
     protected $table = 'bukus';
     protected $fillable = ['judul', 'penulis', 'harga', 'tgl_terbit'];
+    protected $casts = ['tgl_terbit' => 'datetime'];
 }
 
 //representasi dari tabel database yg dukung operasi db

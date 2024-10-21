@@ -13,6 +13,8 @@ Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update')
 Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
 // Route::post('/buku/edit', [BukuController::class, 'edit'])->name('buku.edit');
 
+Route::get('/buku/search', [BukuController::class, 'search'])->name('buku.search');
+
 // Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
 
 /*
