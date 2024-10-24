@@ -1,22 +1,14 @@
-@extends('buku.master')
+@extends('auth.layouts')
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Daftar Buku</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-</head>
-<body class="bg-light">
     <div class="container mt-5">
-
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="text-center">Daftar Buku</h2>
+            @auth
             <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah Buku</a>
+            @endauth
         </div>
 
         @if(Session::has('pesan'))
@@ -29,13 +21,6 @@
         <div class="alert alert-success mt-3">{{ Session::get('update') }}</div>
         @endif
 
-        {{-- <form action="{{ route('buku.search') }}" method="get">
-            @csrf
-            <input type="text" name="kata" class="form-control" placeholder="Cari..."
-            style="width: 30%; display:inline; margin-top:10px; margin-botton:10px;
-            float:right;">
-        </form> --}}
-
         <table id="datatable" class="table table-bordered table-hover mt-4">
             <thead class="table-primary text-center">
                 <tr>
@@ -44,8 +29,10 @@
                     <th>Penulis</th>
                     <th>Harga</th>
                     <th>Tanggal Terbit</th>
+                    @auth
                     <th>Update</th>
                     <th>Delete</th>
+                    @endauth
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +43,7 @@
                         <td>{{ $buku->penulis }}</td>
                         <td>{{ "Rp. ".number_format($buku->harga, 0, ',', '.') }}</td>
                         <td>{{ $buku->tgl_terbit->format('d/m/Y') }}</td>
+                        @auth
                         <td>
                             <a class="btn btn-warning" href="{{ route('buku.edit', $buku->id) }}">Update</a>
                         </td>
@@ -63,33 +51,25 @@
                             <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button onclick="return confirm('Yakin mau di hapus?')" type="submit"
-                                class="btn btn-danger">Hapus</button>
+                                <button onclick="return confirm('Yakin mau di hapus?')" type="submit" class="btn btn-danger">Hapus</button>
                             </form>
                         </td>
+                        @endauth
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        {{-- <div class="d-flex justify-content-end">
-            <div>{{ $data_buku->links() }}</div>
-        </div> --}}
-        {{-- <div><strong>Jumlah Buku: {{ $jumlah_buku }}</strong></div> --}}
-
-
     </div>
-    @endsection
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+@endsection
 
-    <script>
-        $(document).ready(function() {
-            $('#datatable').DataTable();
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
         });
-    </script>
-</body>
-</html>
-
-
+    });
+</script>
