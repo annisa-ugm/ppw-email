@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\SendEmailController;
+
+Route::get('/send-mail', [SendEmailController::class,'index'])->name('kirim-email');
+
 
 // Rute untuk registrasi dan login
 Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
