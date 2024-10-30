@@ -6,7 +6,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\SendEmailController;
 
 Route::get('/send-mail', [SendEmailController::class,'index'])->name('kirim-email');
-
+Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
 
 // Rute untuk registrasi dan login
 Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');

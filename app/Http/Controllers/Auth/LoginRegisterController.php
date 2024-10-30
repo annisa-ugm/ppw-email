@@ -31,13 +31,22 @@ class LoginRegisterController extends Controller
         'password' => 'required|min:8|confirmed',
     ]);
 
-    User::create([
+    $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
     ]);
 
-    // Redirect to login page instead of logging in
+    // Berikut adalah data yang akan dikirimkan ke email
+    $data = [
+        'name' => $user->name,
+        'email' => $user->email,
+        'subject' => 'Welcome to Our Website',
+        'body' => 'Terima kasih telah mendaftar, ' . $user->name . '!',
+    ];
+
+    dispatch(new \App\Jobs\SendMailJob($data));
+
     return redirect()->route('login')->with('success', 'Registration successful! Please login.');
 }
 

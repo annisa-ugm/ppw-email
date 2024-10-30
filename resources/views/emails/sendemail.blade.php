@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Praktikum Pemrograman Web</title>
+ <title>Welcome to Our Website</title>
 </head>
 <body>
- <h3>{{ $data['name'] }}</h3>
- <h4>{{ $data['body'] }}</h4>
+    <h3>Welcome, {{ $data['name'] }}!</h3>
+    <p>{{ $data['body'] }}</p>
 
- <p>Terima kasih</p>
+    <p>Terima kasih telah mengunjungi website kami, website ini hanya dapat digunakan untuk menguji pengiriman email saat di halaman send-email dan register saja.</p>
 </body>
 </html>
